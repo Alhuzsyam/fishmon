@@ -1,0 +1,10 @@
+com/fishmon/Controller/MonitoringController.class
+com/fishmon/Model/Dao/SensorsData.class
+com/fishmon/Services/SensorService.class
+com/fishmon/Repository/RelayRepos.class
+com/fishmon/Controller/RelayController.class
+com/fishmon/Model/Dao/SensorsData$SensorsDataBuilder.class
+com/fishmon/Services/RelayService.class
+com/fishmon/DemoApplication.class
+com/fishmon/Model/dto/Response.class
+com/fishmon/Model/Dao/Relay.class
