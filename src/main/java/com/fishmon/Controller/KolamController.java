@@ -1,6 +1,8 @@
 package com.fishmon.Controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,48 +45,70 @@ public class KolamController {
         return res;
     }
 
-    @GetMapping("/select")
-    public Response<Object> getkolam(@RequestParam String code, @RequestParam String id){
-        Response<Object> res = new Response<>();
+   @GetMapping("/select")
+public Response<Object> getkolam(@RequestParam String code, @RequestParam String id){
+    Response<Object> res = new Response<>();
 
-        try{
-            Kolam getkolam = kolamService.selectKolambyId(code, id);
+    try {
+        Kolam getkolam = kolamService.selectKolambyId(code, id);
+
+        if (getkolam == null) {
+            res.setStatus(HttpStatus.NOT_FOUND.toString());
+            res.setMessage("Kolam not found");
+            res.setPayload(null);
+        } else {
             res.setStatus(HttpStatus.OK.toString());
             res.setMessage("List Kolam");
             res.setPayload(getkolam);
-        }catch(Exception e){
-            res.setStatus(HttpStatus.BAD_REQUEST.toString());
-            res.setMessage("Error");
-            res.setPayload(e.getCause());
         }
-        return res;
+
+    } catch (Exception e) {
+        res.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+        res.setMessage("Error: " + e.getMessage());
+        res.setPayload(null);
     }
 
-    @GetMapping("/select/all")
-    public Response<Object> getAllkolam(@RequestParam String id){
-        Response<Object> res = new Response<>();
+    return res;
+}
 
-        try{
-            List<Kolam> getkolam = kolamService.selectallKolam(id);
+
+   @GetMapping("/select/all")
+public Response<Object> getAllkolam(@RequestParam String id){
+    Response<Object> res = new Response<>();
+
+    try {
+        List<Kolam> getkolam = kolamService.selectallKolam(id);
+
+        if (getkolam == null || getkolam.isEmpty()) {
+            res.setStatus(HttpStatus.NOT_FOUND.toString());
+            res.setMessage("Tidak ada kolam ditemukan");
+            res.setPayload(null);
+        } else {
             res.setStatus(HttpStatus.OK.toString());
             res.setMessage("List Kolam");
             res.setPayload(getkolam);
-        }catch(Exception e){
-            res.setStatus(HttpStatus.BAD_REQUEST.toString());
-            res.setMessage("Error");
-            res.setPayload(e.getCause());
         }
-        return res;
+
+    } catch (Exception e) {
+        res.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+        res.setMessage("Error: " + e.getMessage());
+        res.setPayload(null);
     }
+
+    return res;
+}
+
 
     @PutMapping("/updatestatus")
     public Response<Object> updatestatus(@RequestParam String code,@RequestParam Boolean val, @RequestParam String id){
         Response<Object> res = new Response<>();
+        Map<String, Object> value = new LinkedHashMap<>();
         try{
             boolean update = kolamService.nonactivatekolam(code,val,id);
             res.setStatus(HttpStatus.OK.toString());
-            res.setMessage("Kolam Deactivated");
-            res.setPayload(update);
+            res.setMessage("success");
+            value.put("val", val ? "Activate" : "Deactivate");
+            res.setPayload(value);
         }catch(Exception e){
             res.setStatus(HttpStatus.BAD_REQUEST.toString());
             res.setMessage("Error");
