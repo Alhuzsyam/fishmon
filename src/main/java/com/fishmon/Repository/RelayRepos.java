@@ -12,10 +12,12 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public interface RelayRepos extends JpaRepository<Relay,Long> {
-     Relay findByCode(String code);
+     
+    @Query("SELECT r FROM Relay r WHERE r.code = :code AND r.iduser = :iduser")
+    Relay findByCodeandIdRelay(@Param("code") String code, @Param("iduser") String iduser);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Relay r SET r.val = :val WHERE r.code = :code")
-    int updateValByCode(@Param("code") String code, @Param("val") Boolean val);
+    @Query("UPDATE Relay r SET r.val = :val WHERE r.code = :code AND r.iduser = :iduser")
+    int updateValByCode(@Param("code") String code, @Param("val") Boolean val, @Param("iduser") String iduser);
 }

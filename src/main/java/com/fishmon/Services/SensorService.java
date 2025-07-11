@@ -23,8 +23,8 @@ public class SensorService {
                 `batt_voltage`, `batt_ch_current`, `batt_ch_power`,
                 `load_current`, `load_power`, `batt_percentage`, `batt_temp`,
                 `batt_disch_current`, `env_temp`, `ph_bioflok`,
-                `temp_bioflok`, `do_bioflok`, `code`
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                `temp_bioflok`, `do_bioflok`, `code`, `iduser`
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
 
         // 18 parameter
@@ -45,20 +45,21 @@ public class SensorService {
             data.getPhBioflok(),
             data.getTempBioflok(),
             data.getDoBioflok(),
-            data.getCode() 
+            data.getCode(),
+            data.getIduser()
         );
     }
 
         // Get all sensor data
-        public List<SensorsData> getAllSensorData(String code) {
-        String sql = "SELECT * FROM sensor_data WHERE code = ?";
-        List<SensorsData> data = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(SensorsData.class),code);
+        public List<SensorsData> getAllSensorData(String code, String iduser) {
+        String sql = "SELECT * FROM sensor_data WHERE code = ? AND iduser = ?";
+        List<SensorsData> data = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(SensorsData.class),code,iduser);
         return data;
     }
 
-    public List<SensorsData> getlatestdata(String code){
-        String sql = "SELECT * FROM sensor_data WHERE code = ? Order by timestamp DESC LIMIT 1";
-        List<SensorsData> data = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(SensorsData.class),code);
+    public List<SensorsData> getlatestdata(String code, String iduser){
+        String sql = "SELECT * FROM sensor_data WHERE code = ? AND iduser = ? Order by timestamp DESC LIMIT 1";
+        List<SensorsData> data = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(SensorsData.class),code,iduser);
         return data;
     }
 

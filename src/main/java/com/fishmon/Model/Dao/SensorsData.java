@@ -78,4 +78,7 @@ public class SensorsData {
 
     @Column(name = "code")
     private String code;
+
+    @Column(name = "iduser")
+    private String iduser;
 }

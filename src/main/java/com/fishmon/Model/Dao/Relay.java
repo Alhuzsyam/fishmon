@@ -26,4 +26,7 @@ public class Relay {
 
     @Column(nullable = true)
     private String code = null;
+
+    @Column(nullable = true)
+    private String iduser = null;
 }

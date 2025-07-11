@@ -32,9 +32,10 @@ public class MonitoringController {
 
     // get all data by code
     @GetMapping("/sensors")
-    public Response<Object> getAlldata(@RequestParam String code) {
+    public Response<Object> getAlldata(@RequestParam String code, @RequestParam String id) {
         Response<Object> res = new Response<>();
-        List<SensorsData> alldata = sensorService.getAllSensorData(code);
+        List<SensorsData> alldata = sensorService.getAllSensorData(code,id);
+        System.out.println("datas = "+alldata);
         if(alldata.isEmpty()){
             res.setMessage("data is not found");
             res.setStatus(HttpStatus.NOT_FOUND.toString());
@@ -48,9 +49,10 @@ public class MonitoringController {
     }
     // get lastes data
     @GetMapping("/sensors/latest")
-    public Response<Object> getlatestdata(@RequestParam String code) {
+    public Response<Object> getlatestdata(@RequestParam String code, @RequestParam String id) {
         Response<Object> res = new Response<>();
-        List<SensorsData> alldata = sensorService.getlatestdata(code);
+        List<SensorsData> alldata = sensorService.getlatestdata(code,id);
+        System.out.println("datas = "+alldata);
         if(alldata.isEmpty()){
             res.setMessage("data is not found");
             res.setStatus(HttpStatus.NOT_FOUND.toString());
@@ -64,7 +66,7 @@ public class MonitoringController {
     }
     
 
-    @PostMapping("/sensors")
+    @PostMapping("/micro/sensors")
     public ResponseEntity<Response<Map<String, Object>>> saveSensorData(@RequestBody SensorsData data) {
     try {
         sensorService.saveSensorData(data);
@@ -88,6 +90,7 @@ public class MonitoringController {
         json.put("tempBioflok", data.getTempBioflok());
         json.put("doBioflok", data.getDoBioflok());
         json.put("code", data.getCode());
+        json.put("iduser", data.getIduser());
 
         Response<Map<String, Object>> response = new Response<>("success", "Data berhasil disimpan", json);
         return ResponseEntity.ok(response);

@@ -1,0 +1,96 @@
+package com.fishmon.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fishmon.Model.Dao.Kolam;
+import com.fishmon.Model.dto.Response;
+import com.fishmon.Services.KolamService;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/api/kolam")
+public class KolamController {
+
+    @Autowired
+    private KolamService kolamService;
+
+    @PostMapping("/add")
+    public Response<Object> Addkolam(@RequestBody Kolam kolam){
+
+        Response<Object> res = new Response<>();
+        try{
+         Kolam addKolam = kolamService.addKolam(kolam);
+         res.setStatus(HttpStatus.CREATED.toString());
+         res.setMessage("Success");
+         res.setPayload(addKolam);
+        }
+        catch(Exception e) {
+        res.setStatus(HttpStatus.BAD_REQUEST.toString());
+         res.setMessage("Error");
+         res.setPayload(e.getCause());
+        }
+        return res;
+    }
+
+    @GetMapping("/select")
+    public Response<Object> getkolam(@RequestParam String code, @RequestParam String id){
+        Response<Object> res = new Response<>();
+
+        try{
+            Kolam getkolam = kolamService.selectKolambyId(code, id);
+            res.setStatus(HttpStatus.OK.toString());
+            res.setMessage("List Kolam");
+            res.setPayload(getkolam);
+        }catch(Exception e){
+            res.setStatus(HttpStatus.BAD_REQUEST.toString());
+            res.setMessage("Error");
+            res.setPayload(e.getCause());
+        }
+        return res;
+    }
+
+    @GetMapping("/select/all")
+    public Response<Object> getAllkolam(@RequestParam String id){
+        Response<Object> res = new Response<>();
+
+        try{
+            List<Kolam> getkolam = kolamService.selectallKolam(id);
+            res.setStatus(HttpStatus.OK.toString());
+            res.setMessage("List Kolam");
+            res.setPayload(getkolam);
+        }catch(Exception e){
+            res.setStatus(HttpStatus.BAD_REQUEST.toString());
+            res.setMessage("Error");
+            res.setPayload(e.getCause());
+        }
+        return res;
+    }
+
+    @PutMapping("/updatestatus")
+    public Response<Object> updatestatus(@RequestParam String code,@RequestParam Boolean val, @RequestParam String id){
+        Response<Object> res = new Response<>();
+        try{
+            boolean update = kolamService.nonactivatekolam(code,val,id);
+            res.setStatus(HttpStatus.OK.toString());
+            res.setMessage("Kolam Deactivated");
+            res.setPayload(update);
+        }catch(Exception e){
+            res.setStatus(HttpStatus.BAD_REQUEST.toString());
+            res.setMessage("Error");
+            res.setPayload(e.getCause());
+        }
+        return res;
+    }
+
+}

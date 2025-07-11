@@ -21,12 +21,12 @@ public class RelayController {
     @Autowired
     private com.fishmon.Services.RelayService relayService;
 
-    @GetMapping("/getByCode")
-    public Response<Relay> getRelayByCode(@RequestParam String code) {
+    @GetMapping("/micro/getByCode")
+    public Response<Relay> getRelayByCode(@RequestParam String code, @RequestParam String iduser) {
         Response<Relay> res = new Response<>();
 
         try {
-            Relay relay = relayService.getRelayByCode(code);
+            Relay relay = relayService.getRelayByCode(code, iduser);
 
             if (relay != null) {
                 res.setStatus(HttpStatus.OK.toString());
@@ -64,12 +64,12 @@ public class RelayController {
         return res;
     }
     @PutMapping("/updateValByCode")
-    public Response<Object> updateRelayVal(@RequestParam String code, @RequestParam Boolean val) {
+    public Response<Object> updateRelayVal(@RequestParam String code, @RequestParam Boolean val, @RequestParam String id) {
     Response<Object> res = new Response<>();
     Map<String, Object> value = new LinkedHashMap<>();
 
     try {
-        boolean updated = relayService.updateRelayValByCode(code, val);
+        boolean updated = relayService.updateRelayValByCode(code, val, id);
         if (updated) {
             res.setStatus(HttpStatus.OK.toString());
             res.setMessage("Relay value updated successfully");
