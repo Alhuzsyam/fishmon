@@ -53,7 +53,7 @@ public class UserController {
     }
 
    @PostMapping("/login")
-public Response<Map<String, String>> login(@RequestBody User loginUser) {
+    public Response<Map<String, String>> login(@RequestBody User loginUser) {
     Response<Map<String, String>> res = new Response<>();
     Map<String, String> data = new HashMap<>();
 
@@ -62,6 +62,9 @@ public Response<Map<String, String>> login(@RequestBody User loginUser) {
     if (user.isPresent() && passwordEncoder.matches(loginUser.getPassword(), user.get().getPassword())) {
         String token = jwtUtil.generateToken(user.get().getUsername());
         data.put("token", token);
+
+         data.put("id", String.valueOf(user.get().getId()));
+         data.put("username", user.get().getUsername());
 
         res.setStatus(HttpStatus.OK.toString());
         res.setMessage("Login berhasil");

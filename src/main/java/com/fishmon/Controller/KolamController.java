@@ -54,7 +54,7 @@ public Response<Object> getkolam(@RequestParam String code, @RequestParam String
 
         if (getkolam == null) {
             res.setStatus(HttpStatus.NOT_FOUND.toString());
-            res.setMessage("Kolam not found");
+            res.setMessage("Kolam is not found");
             res.setPayload(null);
         } else {
             res.setStatus(HttpStatus.OK.toString());
@@ -81,7 +81,7 @@ public Response<Object> getAllkolam(@RequestParam String id){
 
         if (getkolam == null || getkolam.isEmpty()) {
             res.setStatus(HttpStatus.NOT_FOUND.toString());
-            res.setMessage("Tidak ada kolam ditemukan");
+            res.setMessage("kolam is not found");
             res.setPayload(null);
         } else {
             res.setStatus(HttpStatus.OK.toString());
