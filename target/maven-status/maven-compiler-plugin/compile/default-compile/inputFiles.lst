@@ -2,6 +2,7 @@
 /Users/alhuzwiri/Documents/lab/2025/BackEnd/FishMon/src/main/java/com/fishmon/Config/CustomUserDetailsService.java
 /Users/alhuzwiri/Documents/lab/2025/BackEnd/FishMon/src/main/java/com/fishmon/Config/SecurityConfig.java
 /Users/alhuzwiri/Documents/lab/2025/BackEnd/FishMon/src/main/java/com/fishmon/Config/UserDetailsImpl.java
+/Users/alhuzwiri/Documents/lab/2025/BackEnd/FishMon/src/main/java/com/fishmon/Config/WebConfig.java
 /Users/alhuzwiri/Documents/lab/2025/BackEnd/FishMon/src/main/java/com/fishmon/Controller/KolamController.java
 /Users/alhuzwiri/Documents/lab/2025/BackEnd/FishMon/src/main/java/com/fishmon/Controller/MonitoringController.java
 /Users/alhuzwiri/Documents/lab/2025/BackEnd/FishMon/src/main/java/com/fishmon/Controller/RelayController.java

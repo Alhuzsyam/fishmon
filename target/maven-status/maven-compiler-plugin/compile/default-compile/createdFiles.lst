@@ -6,6 +6,7 @@ com/fishmon/Utils/Filters/JwtAuthenticationFilter.class
 com/fishmon/DemoApplication.class
 com/fishmon/Services/UserService.class
 com/fishmon/Model/Dao/User.class
+com/fishmon/Config/WebConfig$1.class
 com/fishmon/Config/CustomUserDetailsService.class
 com/fishmon/Repository/RelayRepos.class
 com/fishmon/Model/Dao/SensorsData$SensorsDataBuilder.class
@@ -15,6 +16,7 @@ com/fishmon/Model/Dao/Kolam.class
 com/fishmon/Config/AppConfig.class
 com/fishmon/Controller/UserController.class
 com/fishmon/Utils/JwtUtil.class
+com/fishmon/Config/WebConfig.class
 com/fishmon/Controller/MonitoringController.class
 com/fishmon/Model/Dao/SensorsData.class
 com/fishmon/Services/KolamService.class

@@ -20,8 +20,8 @@ import com.fishmon.Model.dto.Response;
 import com.fishmon.Services.KolamService;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/kolam")
+@CrossOrigin(origins = "*")
 public class KolamController {
 
     @Autowired
