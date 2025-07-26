@@ -1,5 +1,7 @@
 package com.fishmon.Services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,12 @@ public class RelayService {
     public Relay saveRelay(Relay relay) {
         return relayRepository.save(relay);
     }
+
+    public List<Relay> getAllRelaysById(String id){
+        return relayRepository.findRelayByIduser(id);
+        //findRelayByIduser
+    }
+
     @Transactional
     public boolean updateRelayValByCode(String code, Boolean val, String id) {
         int updatedRows = relayRepository.updateValByCode(code, val, id);

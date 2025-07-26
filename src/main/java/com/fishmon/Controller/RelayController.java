@@ -1,6 +1,7 @@
 package com.fishmon.Controller;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -20,6 +21,32 @@ public class RelayController {
 
     @Autowired
     private com.fishmon.Services.RelayService relayService;
+
+    @GetMapping("/relay/all")
+    public Response<Object> getAllRelay(@RequestParam String id){
+        Response<Object> res = new Response<>();
+
+        try{
+            List<Relay> relay = relayService.getAllRelaysById(id); 
+
+            if(relay == null || relay.isEmpty()){
+
+            res.setStatus(HttpStatus.BAD_REQUEST.toString());
+            res.setMessage("Relay Not Found");
+            res.setPayload(null);
+            }else{
+            res.setStatus(HttpStatus.OK.toString());
+            res.setMessage("Relay List");
+            res.setPayload(relay);
+            }
+
+        }catch(Exception e){
+            res.setStatus(HttpStatus.BAD_REQUEST.toString());
+            res.setMessage(e.getMessage());
+            res.setPayload(null);
+        }
+        return res;
+    }
 
     @GetMapping("/micro/getByCode")
     public Response<Relay> getRelayByCode(@RequestParam String code, @RequestParam String iduser) {

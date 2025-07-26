@@ -1,5 +1,7 @@
 package com.fishmon.Repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +17,10 @@ public interface RelayRepos extends JpaRepository<Relay,Long> {
      
     @Query("SELECT r FROM Relay r WHERE r.code = :code AND r.iduser = :iduser")
     Relay findByCodeandIdRelay(@Param("code") String code, @Param("iduser") String iduser);
+
+
+     @Query("SELECT r FROM Relay r WHERE r.iduser = :iduser")
+     List<Relay> findRelayByIduser(@Param("iduser") String iduser);
 
     @Modifying
     @Transactional
