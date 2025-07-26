@@ -27,7 +27,7 @@ public class MonitoringController {
 
     @GetMapping("/welcome")
     public String welcome() {
-        return "Welcome Developer";
+        return "Welcome Developers";
     }
 
     // get all data by code
