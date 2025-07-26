@@ -79,7 +79,8 @@ public class SecurityConfig {
                 .requestMatchers(
                     "/api/auth/**",
                     "/api/control/micro/getByCode",
-                    "/api/monitoring/micro/sensors"
+                    "/api/monitoring/micro/sensors",
+                    "/api/monitoring/welcome"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

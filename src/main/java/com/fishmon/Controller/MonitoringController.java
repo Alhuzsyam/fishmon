@@ -25,7 +25,7 @@ public class MonitoringController {
 
     private final SensorService sensorService; // ✅ FINAL agar di-inject otomatis oleh Lombok
 
-    @GetMapping
+    @GetMapping("/welcome")
     public String welcome() {
         return "Welcome Developer";
     }
