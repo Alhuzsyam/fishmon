@@ -80,7 +80,8 @@ public class SecurityConfig {
                     "/api/auth/**",
                     "/api/control/micro/getByCode",
                     "/api/monitoring/micro/sensors",
-                    "/api/monitoring/welcome"
+                    "/api/monitoring/welcome",
+                    "/api/schedule/getTime"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

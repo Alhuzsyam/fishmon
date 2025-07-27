@@ -1,5 +1,7 @@
 package com.fishmon.Services;
 
+import java.sql.Time;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,9 @@ public class SchedulerService {
         TimerFeeders time = new TimerFeeders();
         time = schedulerRepos.save(timer);
         return time;
+    }
+
+    public TimerFeeders GetSchedule(String code, String id){
+        return schedulerRepos.findByCodeandIdSchFeeders(code, id);
     }
 }
