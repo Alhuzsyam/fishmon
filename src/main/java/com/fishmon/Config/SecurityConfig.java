@@ -96,12 +96,12 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
-            "http://localhost:80",
-            "http://127.0.0.1:80",
+            "http://localhost",
+            "http://127.0.0.1",
             "http://localhost:5173",
             "http://127.0.0.1:5173",
-            "http://43.165.196.6:80",
-             "http://43.165.196.6:5317" 
+            "http://43.165.196.6",
+             "http://43.165.196.6" 
             ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("*"));
