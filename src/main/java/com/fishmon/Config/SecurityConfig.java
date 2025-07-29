@@ -103,7 +103,7 @@ public class SecurityConfig {
             "http://43.165.196.6",
              "https://43.165.196.6",
              "http://monitoring.infarm.web.id",
-             "https://monitoring.infarm.web.id/"
+             "https://monitoring.infarm.web.id"
             ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("*"));
