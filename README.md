@@ -1,5 +1,5 @@
 # Fish Monitoring API Documentation
-![alt text](<Untitled Diagram.drawio.png>)
+![alt text](fishmondiagram.png)
 ## Base URL
 ```
 http://localhost:8089/api
