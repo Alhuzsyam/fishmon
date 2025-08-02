@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: mypassword
-      MYSQL_DATABASE: testdb
+      MYSQL_DATABASE: fishmon
     volumes:
       - my-db:/var/lib/mysql
     ports:
